@@ -135,7 +135,7 @@ DataTag 是一种类似 JSON 的数据格式，但更加强大：
 {
     Pi: 3.1415926,
     Scientific: 1.23e-4,
-    Percent: 50%,           /* 0.5 */
+    Percent: 50.0%,           /* 0.5 */
     HexFloat: 0x1.8p1,      /* 3.0 */
     FloatValue: 3.14f,
     DoubleValue: 2.71828d,
@@ -203,9 +203,9 @@ DataTag 是一种类似 JSON 的数据格式，但更加强大：
 ```
 {
     MultiLine: """
-        line 1
-        line 2
-        "quoted text"
+     line 1
+     line 2
+     "quoted text"
     """
 }
 ```
@@ -333,7 +333,7 @@ DataTag 是一种类似 JSON 的数据格式，但更加强大：
 ```
 {
     UserId: system/xfherun,
-    ResourceId: com.example/MyResource,
+    ResourceId: com_example/MyResource,
     NullId: null
 }
 ```
@@ -427,7 +427,7 @@ Java类路径 (JavaClassPath)：
 {
     ClassPath: com.example.Test.class,
     Resource: com.example.Test.class >>> /config.properties;,
-    ResourceWithEscape: com.example.Test.class >>> path\\ with\\; semicolon;,
+    ResourceWithEscape: com.example.Test.class >>> path\\ with\; semicolon;,
     NullResource: null
 }
 ```
@@ -486,7 +486,7 @@ Java类路径 (JavaClassPath)：
     Sum: math::add(10, 20),
     
     /* 带命名空间的调用 */
-    Result: com.example.utils::StringUtils::format("Hello %s", "World"),
+    Result: com::example::utils::#StringUtils::format("Hello %s", "World"),
     
     /* 传递复杂参数 */
     Data: test::process([1, 2, 3], {Name: "test"}, true),
@@ -555,19 +555,19 @@ Java类路径 (JavaClassPath)：
     ToDouble: <f64> 100,
     
     /* 强制转为null */
-    ToNull: <nullable> "anything",  // 结果为 null
+    ToNull: <nullable> "anything",  /* 结果为 null*/
     
     /* 自动提升为DataTag类型 */
-    Auto1: <auto> "123",      // 提升为 DataTag，而不是转为整数
-    Auto2: <auto> 3.14,       // 提升为 DataTag
-    Auto3: <auto> true,       // 提升为 DataTag
+    Auto1: <auto> "123",      /* 提升为 DataTag，而不是转为整数*/
+    Auto2: <auto> 3.14,       /* 提升为 DataTag*/
+    Auto3: <auto> true,       /* 提升为 DataTag*/
     
     /* 字符串转复合 */
     ToComposite: <composite> "{Name:\"张三\", Age:20}",
     
     /* 类型转换后的引用 */
     CastThenRef: <composite> "{Data: [1,2,3]}",
-    RefElement: ref @this::CastThenRef::Data->0  // 得到 1
+    RefElement: ref @this::CastThenRef::Data->0  /* 得到 1*/
 }
 ```
 
